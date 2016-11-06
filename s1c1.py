@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import boltons.iterutils as iterutils
 
-hex = raw_input()
+hexString = raw_input()
 
-for byte in iterutils.chunked(hex, 2):
-  print byte
+for hexByte in iterutils.chunked(hexString, 2):
+  print hexByte
