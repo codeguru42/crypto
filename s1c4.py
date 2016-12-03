@@ -2,7 +2,8 @@
 def main():
   file = open("s1c4.txt")
   for line in file:
-    print(line)
+    b = bytes.fromhex(line.strip())
+    print(b)
 
 if __name__ == "__main__":
   main()
