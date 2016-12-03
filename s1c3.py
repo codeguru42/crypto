@@ -1,10 +1,13 @@
 #!/usr/bin/python3
+import functools
+import string
+
 def xorcrypt(key, cipher):
   return ''.join([chr(key ^ x) for x in cipher])
 
 def alphaCount(text):
   counts = [0] * 256
-  for c in asciiUpper(text):
+  for c in text:
     counts[ord(c)] += 1
   return counts
 
@@ -47,10 +50,21 @@ def main():
   cipher = bytes.fromhex(msg)
   print("cipher: ", cipher)
 
+  engCount = expectedCounts(len(cipher))
+  minDist = 999999
+  bestPlain = ''
   for key in range(256):
     plain = xorcrypt(key, cipher)
-    if plain.isalpha():
-      print(plain)
+    currCount = alphaCount(plain)
+    currDist = dist(currCount, engCount)
+    if currDist < minDist:
+      minDist = currDist
+      bestCount = currCount
+      bestPlain = plain
+
+  print(bestPlain)
+  print(minDist)
+  print(bestCount)
 
 if __name__ == "__main__":
   main()
