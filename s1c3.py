@@ -2,6 +2,16 @@
 def xorcrypt(key, cipher):
   return ''.join([chr(key ^ x) for x in cipher])
 
+def alphaCount(text):
+  counts = [0] * 256
+  for c in asciiUpper(text):
+    counts[ord(c)] += 1
+  return counts
+
+def dist(count1, count2):
+  diffs = map(lambda x, y: abs(x - y), count1, count2)
+  return sum(diffs)
+
 def expectedCounts(total):
   freqs = [0] * 256
   freqs[ord('a')] = total *  8.167 / 100.0
