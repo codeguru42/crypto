@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 def main():
-  pass
+  file = open("s1c4.txt")
+  for line in file:
+    print(line)
 
 if __name__ == "__main__":
   main()
