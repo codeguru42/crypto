@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys
 import cryptopals
 
 def main():
@@ -7,7 +8,7 @@ def main():
   print("cipher: ", cipher)
 
   engCount = cryptopals.expectedCounts(len(cipher))
-  minDist = 999999
+  minDist = sys.maxsize
   bestPlain = ''
   for key in range(256):
     plain = cryptopals.xorcrypt(key, cipher)
@@ -18,9 +19,11 @@ def main():
       bestCount = currCount
       bestPlain = plain
 
-  print(bestPlain)
-  print(minDist)
-  print(bestCount)
+  print("engCount:", engCount)
+  print("bestPlain:", bestPlain)
+  print("minDist:", minDist)
+  print("bestCount:", bestCount)
+  print("key:", key)
 
 if __name__ == "__main__":
   main()
