@@ -53,4 +53,8 @@ def expectedCounts(total):
   freqs['X'] = total *  0.150 / 100.0
   freqs['Y'] = total *  1.974 / 100.0
   freqs['Z'] = total *  0.074 / 100.0
+
+  for c in freqs:
+    freqs[c] = int(round(freqs[c]))
+
   return freqs
