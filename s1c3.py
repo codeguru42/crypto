@@ -14,16 +14,24 @@ def main():
     plain = cryptopals.xorcrypt(key, cipher)
     currCount = cryptopals.alphaCount(plain)
     currDist = cryptopals.dist(currCount, engCount)
+
+    if key == 88:
+      print("dist for 88:", currDist)
+
+    if key == 120:
+      print("dist for 120:", currDist)
+
     if currDist < minDist:
       minDist = currDist
       bestCount = currCount
       bestPlain = plain
+      bestKey = key
 
   print("engCount:", engCount)
   print("bestPlain:", bestPlain)
   print("minDist:", minDist)
   print("bestCount:", bestCount)
-  print("key:", key)
+  print("bestKey:", bestKey)
 
 if __name__ == "__main__":
   main()
