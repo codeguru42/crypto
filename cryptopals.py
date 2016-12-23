@@ -2,6 +2,7 @@ import base64
 import binascii
 import string
 import collections
+import sys
 
 def hex_to_base64(hexStr):
   return base64.b64encode(bytes.fromhex(hexStr))
@@ -58,3 +59,18 @@ def expected_counts(total):
     freqs[c] = int(round(freqs[c]))
 
   return freqs
+
+def break_xor(cipher):
+  engCount = expected_counts(len(cipher))
+  minDist = sys.maxsize
+  bestPlain = ''
+  for key in range(256):
+    plain = xorcrypt(key, cipher)
+    currCount = alpha_count(plain)
+    currDist = dist(currCount, engCount)
+
+    if currDist < minDist:
+      minDist = currDist
+      bestPlain = plain
+
+  return bestPlain
