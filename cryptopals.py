@@ -17,14 +17,6 @@ def xor(a, b):
 def xorcrypt(key, cipher):
   return ''.join([chr(key ^ x) for x in cipher])
 
-def asciiUpper(text):
-  for c in text:
-    i = string.ascii_lowercase.find(c)
-    if i == -1:
-      yield c
-    else:
-      yield c.upper()
-
 def alphaCount(text):
   return collections.Counter(text.upper())
 
