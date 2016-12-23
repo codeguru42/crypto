@@ -3,7 +3,7 @@ import binascii
 import string
 import collections
 
-def hexToBase64(hexStr):
+def hex_to_base64(hexStr):
   return base64.b64encode(bytes.fromhex(hexStr))
 
 def xor(a, b):
@@ -17,7 +17,7 @@ def xor(a, b):
 def xorcrypt(key, cipher):
   return ''.join([chr(key ^ x) for x in cipher])
 
-def alphaCount(text):
+def alpha_count(text):
   return collections.Counter(text.upper())
 
 def dist(count1, count2):
@@ -25,7 +25,7 @@ def dist(count1, count2):
   diffs = map(lambda x: abs(count1[x] - count2[x]), keys)
   return sum(diffs)
 
-def expectedCounts(total):
+def expected_counts(total):
   freqs = collections.defaultdict(lambda : 0)
   freqs['A'] = total *  8.167 / 100.0
   freqs['B'] = total *  1.492 / 100.0

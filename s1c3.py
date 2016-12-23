@@ -7,12 +7,12 @@ def main():
   cipher = bytes.fromhex(msg)
   print("cipher: ", cipher)
 
-  engCount = cryptopals.expectedCounts(len(cipher))
+  engCount = cryptopals.expected_counts(len(cipher))
   minDist = sys.maxsize
   bestPlain = ''
   for key in range(256):
     plain = cryptopals.xorcrypt(key, cipher)
-    currCount = cryptopals.alphaCount(plain)
+    currCount = cryptopals.alpha_count(plain)
     currDist = cryptopals.dist(currCount, engCount)
 
     if key == 88:
