@@ -5,7 +5,7 @@ import argparse
 def shift(text, key):
   def shift_char(x):
     return chr((ord(x) - ord('A') + key) % 26 + ord('A'))
-  return ''.join(map(shift_char, text))
+  return ''.join(map(shift_char, text.upper()))
 
 
 def main():
