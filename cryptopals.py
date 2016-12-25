@@ -1,6 +1,5 @@
 import base64
 import binascii
-import string
 import collections
 import sys
 
@@ -27,36 +26,36 @@ def dist(count1, count2):
   return sum(diffs)
 
 def expected_counts(total):
-  freqs = collections.defaultdict(lambda : 0)
-  freqs['A'] = total *  8.167 / 100.0
-  freqs['B'] = total *  1.492 / 100.0
-  freqs['C'] = total *  2.782 / 100.0
-  freqs['D'] = total *  4.253 / 100.0
-  freqs['E'] = total * 12.702 / 100.0
-  freqs['F'] = total *  2.228 / 100.0
-  freqs['G'] = total *  2.015 / 100.0
-  freqs['H'] = total *  6.094 / 100.0
-  freqs['I'] = total *  6.966 / 100.0
-  freqs['J'] = total *  0.153 / 100.0
-  freqs['K'] = total *  0.772 / 100.0
-  freqs['L'] = total *  4.025 / 100.0
-  freqs['M'] = total *  2.406 / 100.0
-  freqs['N'] = total *  6.749 / 100.0
-  freqs['O'] = total *  7.507 / 100.0
-  freqs['P'] = total *  1.929 / 100.0
-  freqs['Q'] = total *  0.095 / 100.0
-  freqs['R'] = total *  5.987 / 100.0
-  freqs['S'] = total *  6.327 / 100.0
-  freqs['T'] = total *  9.056 / 100.0
-  freqs['U'] = total *  2.758 / 100.0
-  freqs['V'] = total *  0.978 / 100.0
-  freqs['W'] = total *  2.360 / 100.0
-  freqs['X'] = total *  0.150 / 100.0
-  freqs['Y'] = total *  1.974 / 100.0
-  freqs['Z'] = total *  0.074 / 100.0
+  freqs = collections.defaultdict(lambda: 0)
+  freqs['A'] =  8.167
+  freqs['B'] =  1.492
+  freqs['C'] =  2.782
+  freqs['D'] =  4.253
+  freqs['E'] = 12.702
+  freqs['F'] =  2.228
+  freqs['G'] =  2.015
+  freqs['H'] =  6.094
+  freqs['I'] =  6.966
+  freqs['J'] =  0.153
+  freqs['K'] =  0.772
+  freqs['L'] =  4.025
+  freqs['M'] =  2.406
+  freqs['N'] =  6.749
+  freqs['O'] =  7.507
+  freqs['P'] =  1.929
+  freqs['Q'] =  0.095
+  freqs['R'] =  5.987
+  freqs['S'] =  6.327
+  freqs['T'] =  9.056
+  freqs['U'] =  2.758
+  freqs['V'] =  0.978
+  freqs['W'] =  2.360
+  freqs['X'] =  0.150
+  freqs['Y'] =  1.974
+  freqs['Z'] =  0.074
 
   for c in freqs:
-    freqs[c] = int(round(freqs[c]))
+    freqs[c] = int(round(total * freqs[c] / 100.0))
 
   return freqs
 
