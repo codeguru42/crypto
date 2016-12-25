@@ -1,6 +1,6 @@
 import base64
-import binascii
 import collections
+import operator
 
 
 def hex_to_base64(hexStr):
@@ -8,12 +8,7 @@ def hex_to_base64(hexStr):
 
 
 def xor(a, b):
-    xs = bytes.fromhex(a)
-    ys = bytes.fromhex(b)
-    c = bytearray()
-    for x, y in zip(xs, ys):
-        c.append(x ^ y)
-    return binascii.hexlify(c)
+    return bytes(map(operator.xor, a, b))
 
 
 def xorcrypt(key, cipher):
