@@ -2,7 +2,7 @@ import argparse
 import sys
 
 
-def shift(text, key):
+def shift(key, text):
     def shift_char(x):
         return chr((ord(x) - ord('A') + key) % 26 + ord('A'))
 
@@ -21,7 +21,7 @@ def main():
         inf = sys.stdin
 
     for line in inf:
-        print(shift(line.strip(), args.key))
+        print(shift(args.key, line.strip()))
     inf.close()
 
 
