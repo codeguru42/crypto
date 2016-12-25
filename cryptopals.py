@@ -60,16 +60,10 @@ def expected_counts(total):
   return freqs
 
 def break_xor(cipher):
-  engCount = expected_counts(len(cipher))
-  minDist = sys.maxsize
-  bestPlain = ''
-  for key in range(256):
-    plain = xorcrypt(key, cipher)
-    currCount = alpha_count(plain)
-    currDist = dist(currCount, engCount)
+  plaintexts = map(lambda key : xorcrypt(key, cipher), range(256))
+  return min(plaintexts, key=distance_from_english)
 
-    if currDist < minDist:
-      minDist = currDist
-      bestPlain = plain
-
-  return bestPlain
+def distance_from_english(text):
+  eng_count = expected_counts(len(text))
+  count = alpha_count(text)
+  return dist(count, eng_count)
