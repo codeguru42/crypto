@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import unittest
+
 import cryptopals
+
 
 class TestHexToBase64(unittest.TestCase):
   def testCase(self):
@@ -8,6 +10,7 @@ class TestHexToBase64(unittest.TestCase):
     expected = b"SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
     actual = cryptopals.hex_to_base64(hexStr)
     self.assertEqual(expected, actual)
+
 
 if (__name__ == "__main__"):
   unittest.main()

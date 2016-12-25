@@ -1,10 +1,11 @@
-import sys
 import argparse
+import sys
 
 
 def shift(text, key):
   def shift_char(x):
     return chr((ord(x) - ord('A') + key) % 26 + ord('A'))
+
   return ''.join(map(shift_char, text.upper()))
 
 
@@ -14,7 +15,7 @@ def main():
   parser.add_argument('filename', nargs='?', help='name of input file')
   args = parser.parse_args()
 
-  if(args.filename):
+  if (args.filename):
     inf = open(args.filename)
   else:
     inf = sys.stdin
@@ -22,6 +23,7 @@ def main():
   for line in inf:
     print(shift(line.strip(), args.key))
   inf.close()
+
 
 if __name__ == "__main__":
   main()

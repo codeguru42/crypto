@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-import cryptopals
 import unittest
+
+import cryptopals
+
 
 class TestOneByteXor(unittest.TestCase):
   def testCase(self):
@@ -8,6 +10,7 @@ class TestOneByteXor(unittest.TestCase):
     cipher = bytes.fromhex(msg)
     expected = "Cooking MC's like a pound of bacon"
     self.assertEqual(expected, cryptopals.break_xor(cipher))
+
 
 if __name__ == "__main__":
   unittest.main()

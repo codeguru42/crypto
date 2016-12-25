@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-import cryptopals
 import unittest
+
+import cryptopals
+
 
 class TestXor(unittest.TestCase):
   def testCase(self):
@@ -9,6 +11,7 @@ class TestXor(unittest.TestCase):
     expected = b"746865206b696420646f6e277420706c6179"
     actual = cryptopals.xor(a, b)
     self.assertEqual(expected, actual)
+
 
 if __name__ == "__main__":
   unittest.main()
