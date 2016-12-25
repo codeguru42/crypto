@@ -9,9 +9,17 @@ def shift(key, text):
     return ''.join(map(shift_char, text.upper()))
 
 
+def break_shift(cipher):
+    plaintexts = (shift(key, cipher.upper()) for key in range(26))
+    for plain in plaintexts:
+        print(plain)
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('key', type=int)
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-k', '--key', type=int, help='encryption key')
+    group.add_argument('-b', '--break-cipher', help='break encryption', action='store_true')
     parser.add_argument('filename', nargs='?', help='name of input file')
     args = parser.parse_args()
 
@@ -21,7 +29,10 @@ def main():
         inf = sys.stdin
 
     for line in inf:
-        print(shift(args.key, line.strip()))
+        if (args.break_cipher):
+            break_shift(line.strip())
+        else:
+            print(shift(args.key, line.strip()))
     inf.close()
 
 
