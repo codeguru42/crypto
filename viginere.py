@@ -1,8 +1,6 @@
 import argparse
-
-import sys
-
 import itertools
+import sys
 
 
 def viginere(key, text):
@@ -24,7 +22,11 @@ def break_viginere(cipher):
 
 
 def grouper(iterable, n):
-    return itertools.zip_longest(*([iter(iterable)] * n), fillvalue=0)
+    it = iter(iterable)
+    group = tuple(itertools.islice(it, n))
+    while group:
+        yield group
+        group = tuple(itertools.islice(it, n))
 
 
 def main():
