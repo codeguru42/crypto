@@ -1,7 +1,16 @@
 import argparse
 import sys
+import unittest
 
 import cryptopals
+
+
+class TestViginere(unittest.TestCase):
+    def testCase(self):
+        key = 'zzzyyyxxx'
+        data = 'UibpmuOdbofNgttbFksjtvocvwrzpvvqq'
+        expected = 'THANKSLAYNEMERRYCHRISTMASTOYOUTOO'
+        self.assertEqual(expected, viginere(key, data))
 
 
 def viginere(key, text):

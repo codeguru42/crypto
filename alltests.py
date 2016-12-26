@@ -4,6 +4,7 @@ import s1c1
 import s1c2
 import s1c3
 import s1c4
+import viginere
 
 
 def suite():
@@ -13,6 +14,7 @@ def suite():
     suite.addTest(loader.loadTestsFromTestCase(s1c2.TestXor))
     suite.addTest(loader.loadTestsFromTestCase(s1c3.TestOneByteXor))
     suite.addTest(loader.loadTestsFromTestCase(s1c4.TestBreakAll))
+    suite.addTest(loader.loadTestsFromModule(viginere))
 
     return suite
 
