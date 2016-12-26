@@ -1,5 +1,6 @@
 import base64
 import collections
+import itertools
 import operator
 
 
@@ -69,3 +70,11 @@ def distance_from_english(text):
     eng_count = expected_counts(len(text))
     count = alpha_count(text)
     return dist(count, eng_count)
+
+
+def grouper(iterable, n):
+    it = iter(iterable)
+    group = tuple(itertools.islice(it, n))
+    while group:
+        yield group
+        group = tuple(itertools.islice(it, n))

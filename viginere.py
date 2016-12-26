@@ -1,6 +1,7 @@
 import argparse
-import itertools
 import sys
+
+import cryptopals
 
 
 def viginere(key, text):
@@ -12,21 +13,14 @@ def viginere(key, text):
 
     key_int = str_to_ints(key)
     text_int = str_to_ints(text)
-    cipher = [map(lambda x, y: (x + y) % 26, key_int, text_group) for text_group in grouper(text_int, len(key_int))]
+    cipher = [map(lambda x, y: (x + y) % 26, key_int, text_group) for text_group in
+              cryptopals.grouper(text_int, len(key_int))]
     cipher = ((chr(c + ord('A')) for c in x) for x in cipher)
     return ''.join(''.join(x) for x in cipher)
 
 
 def break_viginere(cipher):
     pass
-
-
-def grouper(iterable, n):
-    it = iter(iterable)
-    group = tuple(itertools.islice(it, n))
-    while group:
-        yield group
-        group = tuple(itertools.islice(it, n))
 
 
 def main():
