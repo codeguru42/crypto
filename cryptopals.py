@@ -13,7 +13,7 @@ def xor(a, b):
 
 
 def xorcrypt(key, cipher):
-    return ''.join(chr(key ^ x) for x in cipher)
+    return bytes(key ^ x for x in cipher)
 
 
 def alpha_count(text):

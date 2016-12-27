@@ -8,7 +8,7 @@ import cryptopals
 class TestBreakAll(unittest.TestCase):
     def testCase(self):
         filename = 's1c4.txt'
-        expected = 'nOW\x00THAT\x00THE\x00PARTY\x00IS\x00JUMPING*'
+        expected = b'nOW\x00THAT\x00THE\x00PARTY\x00IS\x00JUMPING*'
         with open(filename) as file:
             plaintexts = map(lambda line: cryptopals.break_xor(bytes.fromhex(line.strip())), file)
             best = min(plaintexts, key=cryptopals.distance_from_english)
