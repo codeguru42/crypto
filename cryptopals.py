@@ -13,7 +13,7 @@ def xor(a, b):
 
 
 def xorcrypt(key, cipher):
-    return bytes(key ^ x for x in cipher)
+    return b''.join(xor(key, x) for x in grouper(cipher, len(key)))
 
 
 def alpha_count(text):
@@ -61,8 +61,9 @@ def expected_counts(total):
     return freqs
 
 
-def break_xor(cipher):
-    plaintexts = map(lambda key: xorcrypt(key, cipher), range(256))
+def break_xor(cipher, keylen):
+    keys = itertools.product(*(range(256) for _ in range(keylen)))
+    plaintexts = map(lambda key: xorcrypt(key, cipher), keys)
     return min(plaintexts, key=distance_from_english)
 
 
