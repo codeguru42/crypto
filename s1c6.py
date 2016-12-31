@@ -25,14 +25,14 @@ def normalized_edit_distance(text, keylen):
     return dist / keylen
 
 
-def best_keylen(filename):
-    with open(filename) as file:
-        first_line = base64.b64decode(file.readline())
-        return min(range(2, 40), key=lambda l: normalized_edit_distance(first_line, l))
+def best_keylen(data):
+    return min(range(2, 40), key=lambda l: normalized_edit_distance(data, l))
 
 
 def main():
-    print(best_keylen(sys.argv[1]))
+    with open(sys.argv[1]) as file:
+        data = base64.b64decode(file.read())
+        print(best_keylen(data))
 
 if __name__ == "__main__":
     main()
