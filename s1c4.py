@@ -14,7 +14,7 @@ class TestBreakAll(unittest.TestCase):
 
 def break_file(filename):
     with open(filename) as file:
-        plaintexts = map(lambda line: cryptopals.break_xor(bytes.fromhex(line.strip()), 1), file)
+        plaintexts = map(lambda line: cryptopals.break_xor(bytes.fromhex(line.strip())), file)
         return min(plaintexts, key=cryptopals.distance_from_english)
 
 

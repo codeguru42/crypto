@@ -12,7 +12,7 @@ class TestOneByteXor(unittest.TestCase):
 
     def testBreakXor(self):
         expected = b"Cooking MC's like a pound of bacon"
-        self.assertEqual(expected, cryptopals.break_xor(self.cipher, 1))
+        self.assertEqual(expected, cryptopals.break_xor(self.cipher))
 
     def testXorCrypt(self):
         expected = [b'\x1b77316?x\x15\x1b\x7f+x413=x9x(7-6<x7>x:9;76', b'\x1a66207>y\x14\x1a~*y502<y8y)6,7=y6?y;8:67',

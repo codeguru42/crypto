@@ -61,9 +61,9 @@ def expected_counts(total):
     return freqs
 
 
-def break_xor(cipher, keylen):
-    keys = itertools.product(*(range(256) for _ in range(keylen)))
-    plaintexts = map(lambda key: xorcrypt(key, cipher), keys)
+def break_xor(cipher):
+    keys = range(256)
+    plaintexts = map(lambda key: xorcrypt((key,), cipher), keys)
     return min(plaintexts, key=distance_from_english)
 
 
