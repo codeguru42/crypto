@@ -46,12 +46,9 @@ def transpose(lines):
 
 def break_repeating_xor(data, keylen):
     groups = transpose(list(cryptopals.grouper(data, keylen)))
-    print('groups:', groups)
-    key = [cryptopals.break_xor(g) for g in groups]
-    print('key: ', key)
-    print(len(key), 'bytes')
-    plain = [''.join(chr(x) for x in row) for row in transpose(key)]
-    return ''.join(plain)
+    plaintext_groups = [cryptopals.break_xor(g) for g in groups]
+    plaintext = [''.join(chr(x) for x in row) for row in transpose(plaintext_groups)]
+    return ''.join(plaintext)
 
 
 def main():
