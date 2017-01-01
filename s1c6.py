@@ -47,7 +47,17 @@ def transpose(lines):
 def main():
     with open(sys.argv[1]) as file:
         data = base64.b64decode(file.read())
-        print(best_keylen(data))
+        print('data:', data)
+        print(len(data), 'bytes')
+        keylen = best_keylen(data)
+        print('keylen:', keylen)
+        groups = transpose(list(cryptopals.grouper(data, keylen)))
+        print('groups:', groups)
+        key = [cryptopals.break_xor(g) for g in groups]
+        print('key: ', key)
+        print(len(key), 'bytes')
+        plain = [''.join(chr(x) for x in row) for row in transpose(key)]
+        print(''.join(plain))
 
 
 if __name__ == "__main__":
