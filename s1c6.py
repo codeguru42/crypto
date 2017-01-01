@@ -32,8 +32,8 @@ def normalized_edit_distance(text, keylen):
     return dist / keylen
 
 
-def best_keylen(data):
-    return min(range(2, 40), key=lambda l: normalized_edit_distance(data, l))
+def keylen_gen(data, min_len, max_len):
+    return sorted(range(min_len, max_len), key=lambda l: normalized_edit_distance(data, l))
 
 
 def transpose(lines):
@@ -56,9 +56,9 @@ def main():
         data = base64.b64decode(file.read())
         print('data:', data)
         print(len(data), 'bytes')
-        keylen = best_keylen(data)
-        print('keylen:', keylen)
-        print(break_repeating_xor(data, keylen))
+        keylens = keylen_gen(data, 2, 100)
+        plain = min((break_repeating_xor(data, l) for l in keylens[:5]), key=cryptopals.distance_from_english)
+        print(plain)
 
 
 if __name__ == "__main__":
