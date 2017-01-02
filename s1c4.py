@@ -8,7 +8,7 @@ import cryptopals
 class TestBreakAll(unittest.TestCase):
     def testCase(self):
         filename = 's1c4.txt'
-        expected = b'nOW\x00THAT\x00THE\x00PARTY\x00IS\x00JUMPING*'
+        expected = b'Now that the party is jumping\n'
         self.assertEqual(expected, break_file(filename))
 
 
