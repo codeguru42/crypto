@@ -11,7 +11,7 @@ class TestOneByteXor(unittest.TestCase):
         self.cipher = bytes.fromhex(msg)
 
     def testBreakXor(self):
-        expected = b"Cooking MC's like a pound of bacon"
+        expected = (88, b"Cooking MC's like a pound of bacon")
         self.assertEqual(expected, cryptopals.break_xor(self.cipher))
 
     def testXorCrypt(self):

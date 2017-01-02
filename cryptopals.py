@@ -63,8 +63,8 @@ def expected_counts(total):
 
 def break_xor(cipher):
     keys = range(256)
-    plaintexts = map(lambda key: xorcrypt((key,), cipher), keys)
-    return min(plaintexts, key=distance_from_english)
+    plaintexts = map(lambda key: (key, xorcrypt((key,), cipher)), keys)
+    return min(plaintexts, key=lambda text: distance_from_english(text[1]))
 
 
 def distance_from_english(text):

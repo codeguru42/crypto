@@ -8,14 +8,14 @@ import cryptopals
 class TestBreakAll(unittest.TestCase):
     def testCase(self):
         filename = 's1c4.txt'
-        expected = b'Now that the party is jumping\n'
+        expected = (0x35, b'Now that the party is jumping\n')
         self.assertEqual(expected, break_file(filename))
 
 
 def break_file(filename):
     with open(filename) as file:
         plaintexts = map(lambda line: cryptopals.break_xor(bytes.fromhex(line.strip())), file)
-        return min(plaintexts, key=cryptopals.distance_from_english)
+        return min(plaintexts, key=lambda text: cryptopals.distance_from_english(text[1]))
 
 
 def main():
