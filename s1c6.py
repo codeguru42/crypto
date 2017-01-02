@@ -3,6 +3,7 @@ import sys
 import unittest
 
 import bitstring
+import itertools
 
 import cryptopals
 
@@ -28,8 +29,12 @@ def hamming_distance(str1, str2):
 
 
 def normalized_edit_distance(text, keylen):
-    dist = hamming_distance(text[:keylen], text[keylen:2 * keylen])
-    return dist / keylen
+    total = 0
+    count = 4
+    for a, b in itertools.islice(window(cryptopals.grouper(text, keylen), 2), count):
+        dist = hamming_distance(a, b)
+        total += dist / keylen
+    return total / count
 
 
 def keylen_gen(data, min_len, max_len):
@@ -44,6 +49,18 @@ def transpose(lines):
     return result
 
 
+def window(seq, n=2):
+    "Returns a sliding window (of width n) over data from the iterable"
+    "   s -> (s0,s1,...s[n-1]), (s1,s2,...,sn), ...                   "
+    it = iter(seq)
+    result = tuple(itertools.islice(it, n))
+    if len(result) == n:
+        yield result
+    for elem in it:
+        result = result[1:] + (elem,)
+        yield result
+
+
 def break_repeating_xor(data, keylen):
     groups = transpose(list(cryptopals.grouper(data, keylen)))
     plaintext_groups = [cryptopals.break_xor(g) for g in groups]
@@ -56,7 +73,7 @@ def main():
         data = base64.b64decode(file.read())
         print('data:', data)
         print(len(data), 'bytes')
-        keylens = keylen_gen(data, 2, 100)
+        keylens = keylen_gen(data, 2, 40)
         plain = min((break_repeating_xor(data, l) for l in keylens[:5]), key=cryptopals.distance_from_english)
         print(plain)
 
