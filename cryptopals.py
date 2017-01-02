@@ -17,7 +17,7 @@ def xorcrypt(key, cipher):
 
 
 def alpha_count(text):
-    return collections.Counter(text.upper())
+    return collections.Counter(text)
 
 
 def dist(count1, count2):
@@ -28,32 +28,32 @@ def dist(count1, count2):
 
 def expected_counts(total):
     freqs = collections.defaultdict(lambda: 0)
-    freqs[ord('A')] = 8.167
-    freqs[ord('B')] = 1.492
-    freqs[ord('C')] = 2.782
-    freqs[ord('D')] = 4.253
-    freqs[ord('E')] = 12.702
-    freqs[ord('F')] = 2.228
-    freqs[ord('G')] = 2.015
-    freqs[ord('H')] = 6.094
-    freqs[ord('I')] = 6.966
-    freqs[ord('J')] = 0.153
-    freqs[ord('K')] = 0.772
-    freqs[ord('L')] = 4.025
-    freqs[ord('M')] = 2.406
-    freqs[ord('N')] = 6.749
-    freqs[ord('O')] = 7.507
-    freqs[ord('P')] = 1.929
-    freqs[ord('Q')] = 0.095
-    freqs[ord('R')] = 5.987
-    freqs[ord('S')] = 6.327
-    freqs[ord('T')] = 9.056
-    freqs[ord('U')] = 2.758
-    freqs[ord('V')] = 0.978
-    freqs[ord('W')] = 2.360
-    freqs[ord('X')] = 0.150
-    freqs[ord('Y')] = 1.974
-    freqs[ord('Z')] = 0.074
+    freqs[ord('a')] = 8.167
+    freqs[ord('b')] = 1.492
+    freqs[ord('c')] = 2.782
+    freqs[ord('d')] = 4.253
+    freqs[ord('e')] = 12.702
+    freqs[ord('f')] = 2.228
+    freqs[ord('g')] = 2.015
+    freqs[ord('h')] = 6.094
+    freqs[ord('i')] = 6.966
+    freqs[ord('j')] = 0.153
+    freqs[ord('k')] = 0.772
+    freqs[ord('l')] = 4.025
+    freqs[ord('m')] = 2.406
+    freqs[ord('n')] = 6.749
+    freqs[ord('o')] = 7.507
+    freqs[ord('p')] = 1.929
+    freqs[ord('q')] = 0.095
+    freqs[ord('r')] = 5.987
+    freqs[ord('s')] = 6.327
+    freqs[ord('t')] = 9.056
+    freqs[ord('u')] = 2.758
+    freqs[ord('v')] = 0.978
+    freqs[ord('w')] = 2.360
+    freqs[ord('x')] = 0.150
+    freqs[ord('y')] = 1.974
+    freqs[ord('z')] = 0.074
 
     for c in freqs:
         freqs[c] = int(round(total * freqs[c] / 100.0))
