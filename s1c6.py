@@ -63,9 +63,9 @@ def window(seq, n=2):
 
 def break_repeating_xor(data, keylen):
     groups = transpose(list(cryptopals.grouper(data, keylen)))
-    plaintext_groups = [cryptopals.break_xor(g) for g in groups]
-    plaintext = [bytes(row) for row in transpose(plaintext_groups)]
-    return b''.join(plaintext)
+    plaintext_groups = list(zip(*(cryptopals.break_xor(g) for g in groups)))
+    plaintext = [bytes(row) for row in transpose(plaintext_groups[1])]
+    return bytes(plaintext_groups[0]), b''.join(plaintext)
 
 
 def main():
@@ -74,7 +74,8 @@ def main():
         print('data:', data)
         print(len(data), 'bytes')
         keylens = keylen_gen(data, 2, 40)
-        plain = min((break_repeating_xor(data, l) for l in keylens[:5]), key=cryptopals.distance_from_english)
+        plain = min((break_repeating_xor(data, l) for l in keylens[:5]),
+                    key=lambda x: cryptopals.distance_from_english(x[1]))
         print(plain)
 
 
