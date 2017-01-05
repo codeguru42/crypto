@@ -7,7 +7,7 @@ from Crypto.Cipher import AES
 def main():
     with open(argv[1]) as file:
         for line in file:
-            data = bytes.fromhex(line)
+            data = bytes.fromhex(line.strip())
             print('data:', data)
 
 
