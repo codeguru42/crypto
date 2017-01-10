@@ -1,7 +1,7 @@
-from base64 import b64decode
+from collections import Counter
 from sys import argv
 
-from Crypto.Cipher import AES
+from cryptopals import grouper
 
 
 def main():
@@ -9,6 +9,8 @@ def main():
         for line in file:
             data = bytes.fromhex(line.strip())
             print('data:', data)
+            block_count = Counter(grouper(data, 16))
+            print('blocks:', block_count)
 
 
 if __name__ == "__main__":
