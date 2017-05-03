@@ -1,15 +1,15 @@
 from base64 import b64decode
 from sys import argv
 
-from Crypto.Cipher import AES
+from Cryptodome.Cipher import AES
 
 
 def main():
-    key = "YELLOW SUBMARINE"
+    key = b'YELLOW SUBMARINE'
     with open(argv[1]) as file:
         data = b64decode(file.read())
         print('data:', data)
-        aes = AES.new(key)
+        aes = AES.new(key, AES.MODE_ECB)
         plaintext = aes.decrypt(data)
         print(plaintext.decode('ascii'))
 
