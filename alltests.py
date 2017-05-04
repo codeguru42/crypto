@@ -1,23 +1,23 @@
 import unittest
 
-import s1c1
-import s1c2
-import s1c3
-import s1c4
-import s1c5
-import s1c6
+import set1.c1
+import set1.c2
+import set1.c3
+import set1.c4
+import set1.c5
+import set1.c6
 import viginere
 
 
 def suite():
     suite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    suite.addTest(loader.loadTestsFromModule(s1c1))
-    suite.addTest(loader.loadTestsFromModule(s1c2))
-    suite.addTest(loader.loadTestsFromModule(s1c3))
-    suite.addTest(loader.loadTestsFromModule(s1c4))
-    suite.addTest(loader.loadTestsFromModule(s1c5))
-    suite.addTest(loader.loadTestsFromModule(s1c6))
+    suite.addTest(loader.loadTestsFromModule(set1.c1))
+    suite.addTest(loader.loadTestsFromModule(set1.c2))
+    suite.addTest(loader.loadTestsFromModule(set1.c3))
+    suite.addTest(loader.loadTestsFromModule(set1.c4))
+    suite.addTest(loader.loadTestsFromModule(set1.c5))
+    suite.addTest(loader.loadTestsFromModule(set1.c6))
     suite.addTest(loader.loadTestsFromModule(viginere))
 
     return suite
