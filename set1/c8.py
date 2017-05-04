@@ -14,7 +14,7 @@ def main():
                 if block_count[block] > 1:
                     is_aes = True
             if is_aes:
-                print("Line", line_num)
+                print("Line", line_num + 1)
                 print(data)
 
 
