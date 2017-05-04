@@ -10,17 +10,17 @@ import viginere
 
 
 def suite():
-    suite = unittest.TestSuite()
+    s = unittest.TestSuite()
     loader = unittest.TestLoader()
-    suite.addTest(loader.loadTestsFromModule(set1.c1))
-    suite.addTest(loader.loadTestsFromModule(set1.c2))
-    suite.addTest(loader.loadTestsFromModule(set1.c3))
-    suite.addTest(loader.loadTestsFromModule(set1.c4))
-    suite.addTest(loader.loadTestsFromModule(set1.c5))
-    suite.addTest(loader.loadTestsFromModule(set1.c6))
-    suite.addTest(loader.loadTestsFromModule(viginere))
+    s.addTest(loader.loadTestsFromModule(set1.c1))
+    s.addTest(loader.loadTestsFromModule(set1.c2))
+    s.addTest(loader.loadTestsFromModule(set1.c3))
+    s.addTest(loader.loadTestsFromModule(set1.c4))
+    s.addTest(loader.loadTestsFromModule(set1.c5))
+    s.addTest(loader.loadTestsFromModule(set1.c6))
+    s.addTest(loader.loadTestsFromModule(viginere))
 
-    return suite
+    return s
 
 
 if __name__ == '__main__':
