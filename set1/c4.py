@@ -7,7 +7,7 @@ import cryptopals
 
 class TestBreakAll(unittest.TestCase):
     def testCase(self):
-        filename = 's1c4.txt'
+        filename = 'input/set1/s1c4.txt'
         expected = (0x35, b'Now that the party is jumping\n')
         self.assertEqual(expected, break_file(filename))
 
