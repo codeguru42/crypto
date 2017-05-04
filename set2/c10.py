@@ -18,5 +18,9 @@ def cbc_decrypt(key, text, iv):
     pass
 
 
+def main():
+    pass
+
+
 if __name__ == '__main__':
-    unittest.main()
+    main()
