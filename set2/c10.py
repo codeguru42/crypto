@@ -2,7 +2,7 @@ import unittest
 from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad
 
-from cryptopals import grouper, xor
+from cryptopals import grouper, xor, pkcs7
 
 
 class TestCbc(unittest.TestCase):
@@ -25,10 +25,12 @@ class TestCbc(unittest.TestCase):
 
 
 def cbc_encrypt(key, plain, iv):
+    block_size = 16
     aes = AES.new(key, AES.MODE_ECB)
     cipher_text = []
     data = iv
-    for block in grouper(plain, 16):
+    plain = pkcs7(plain, block_size)
+    for block in grouper(plain, block_size):
         data = xor(data, bytes(block))
         data = aes.encrypt(data)
         cipher_text.append(data)
