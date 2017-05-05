@@ -25,7 +25,8 @@ class TestCbc(unittest.TestCase):
 
     def testDecrypt(self):
         cipher = self.aes.encrypt(self.text)
-        expected = self.aes.decrypt(cipher)
+        aes_decrypt = AES.new(self.key, AES.MODE_CBC, iv = self.iv)
+        expected = aes_decrypt.decrypt(cipher)
         my_cipher = cbc_encrypt(self.key, self.text, self.iv)
         actual = cbc_decrypt(self.key, my_cipher, self.iv)
         self.assertEqual(expected, actual)
@@ -33,7 +34,8 @@ class TestCbc(unittest.TestCase):
     def testDecryptPadding(self):
         text = pad(self.text[:25], 16)
         cipher = self.aes.encrypt(text)
-        expected = self.aes.decrypt(cipher)
+        aes_decrypt = AES.new(self.key, AES.MODE_CBC, iv = self.iv)
+        expected = aes_decrypt.decrypt(cipher)
         my_cipher = cbc_encrypt(self.key, text, self.iv)
         actual = cbc_decrypt(self.key, my_cipher, self.iv)
         self.assertEqual(expected, actual)
@@ -52,8 +54,17 @@ def cbc_encrypt(key, plain, iv):
     return b''.join(cipher_text)
 
 
-def cbc_decrypt(key, text, iv):
-    pass
+def cbc_decrypt(key, cipher, iv):
+    block_size = 16
+    aes = AES.new(key, AES.MODE_ECB)
+    cipher_text = []
+    data = iv
+    cipher = pkcs7(cipher, block_size)
+    for block in grouper(cipher, block_size):
+        plain = aes.decrypt(bytes(block))
+        cipher_text.append(xor(plain, data))
+        data = bytes(block)
+    return b''.join(cipher_text)
 
 
 def main():
