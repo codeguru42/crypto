@@ -7,6 +7,7 @@ import set1.c4
 import set1.c5
 import set1.c6
 import set2.c9
+import set2.c10
 import viginere
 
 
@@ -21,6 +22,7 @@ def suite():
     s.addTest(loader.loadTestsFromModule(set1.c6))
 
     s.addTest(loader.loadTestsFromModule(set2.c9))
+    s.addTest(loader.loadTestsFromModule(set2.c10))
 
     s.addTest(loader.loadTestsFromModule(viginere))
 
