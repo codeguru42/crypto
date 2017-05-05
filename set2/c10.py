@@ -1,5 +1,7 @@
 import unittest
 from Cryptodome.Cipher import AES
+from Cryptodome.Util.Padding import pad
+
 from cryptopals import grouper, xor
 
 
@@ -13,6 +15,12 @@ class TestCbc(unittest.TestCase):
     def testEncrypt(self):
         expected = self.aes.encrypt(self.text)
         actual = cbc_encrypt(self.key, self.text, self.iv)
+        self.assertEqual(expected, actual)
+
+    def testEncryptPadding(self):
+        text = pad(self.text[:25], 16)
+        expected = self.aes.encrypt(text)
+        actual = cbc_encrypt(self.key, self.text[:25], self.iv)
         self.assertEqual(expected, actual)
 
 
