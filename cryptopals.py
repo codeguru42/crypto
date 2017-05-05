@@ -79,3 +79,8 @@ def grouper(iterable, n):
     while group:
         yield group
         group = tuple(itertools.islice(it, n))
+
+
+def pkcs7(text, block_length):
+    padding = block_length - len(text)
+    return text + bytes([padding] * padding)
