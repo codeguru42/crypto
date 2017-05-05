@@ -86,3 +86,12 @@ def pkcs7(text, block_length):
         return text
     padding = block_length - len(text)%block_length
     return text + bytes([padding] * padding)
+
+
+def is_ecb(cipher):
+    block_count = collections.Counter(grouper(cipher, 16))
+    ecb = False
+    for block in block_count:
+        if block_count[block] > 1:
+            ecb = True
+    return ecb
