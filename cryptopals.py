@@ -82,5 +82,7 @@ def grouper(iterable, n):
 
 
 def pkcs7(text, block_length):
-    padding = block_length - len(text)
+    if (len(text) % block_length == 0):
+        return text
+    padding = block_length - len(text)%block_length
     return text + bytes([padding] * padding)
