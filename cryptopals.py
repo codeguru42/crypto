@@ -4,8 +4,8 @@ import itertools
 import operator
 
 
-def hex_to_base64(hexStr):
-    return base64.b64encode(bytes.fromhex(hexStr))
+def hex_to_base64(hex_str):
+    return base64.b64encode(bytes.fromhex(hex_str))
 
 
 def xor(a, b):
@@ -82,9 +82,9 @@ def grouper(iterable, n):
 
 
 def pkcs7(text, block_length):
-    if (len(text) % block_length == 0):
+    if len(text) % block_length == 0:
         return text
-    padding = block_length - len(text)%block_length
+    padding = block_length - len(text) % block_length
     return text + bytes([padding] * padding)
 
 
