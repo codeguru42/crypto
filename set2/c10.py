@@ -72,10 +72,11 @@ def cbc_decrypt(key, cipher, iv):
 
 def main():
     key = b'YELLOW SUBMARINE'
+    iv = b'\x00' * 16
     with open(argv[1]) as file:
-        for line in file:
-            data = b64decode(line.strip())
-            print(data)
+        cipher = b64decode(file.read())
+        plain = cbc_decrypt(key, cipher, iv)
+        print(plain.decode('ascii'))
 
 
 if __name__ == '__main__':
