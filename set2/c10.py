@@ -4,13 +4,15 @@ from cryptopals import grouper, xor
 
 
 class TestCbc(unittest.TestCase):
+    def setUp(self):
+        self.key = b'YELLOW SUBMARINE'
+        self.iv = b'\x00' * 16
+        self.text = b'The quick red fox jumped over the lazy brown dog'
+        self.aes = AES.new(self.key, AES.MODE_CBC, iv=self.iv)
+
     def testEncrypt(self):
-        key = b'YELLOW SUBMARINE'
-        iv = b'\x00' * 16
-        text = b'The quick red fox jumped over the lazy brown dog'
-        aes = AES.new(key, AES.MODE_CBC, iv=iv)
-        expected = aes.encrypt(text)
-        actual = cbc_encrypt(key, text, iv)
+        expected = self.aes.encrypt(self.text)
+        actual = cbc_encrypt(self.key, self.text, self.iv)
         self.assertEqual(expected, actual)
 
 
