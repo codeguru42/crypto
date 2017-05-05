@@ -1,4 +1,7 @@
 import unittest
+from base64 import b64decode
+from sys import argv
+
 from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad
 
@@ -68,7 +71,11 @@ def cbc_decrypt(key, cipher, iv):
 
 
 def main():
-    pass
+    key = b'YELLOW SUBMARINE'
+    with open(argv[1]) as file:
+        for line in file:
+            data = b64decode(line.strip())
+            print(data)
 
 
 if __name__ == '__main__':
