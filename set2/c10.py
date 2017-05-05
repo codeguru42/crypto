@@ -3,23 +3,25 @@ from Cryptodome.Cipher import AES
 from cryptopals import grouper, xor
 
 
-class TestCbcEncrypt(unittest.TestCase):
-    def testCase(self):
+class TestCbc(unittest.TestCase):
+    def testEncrypt(self):
         key = b'YELLOW SUBMARINE'
         iv = b'\x00' * 16
         text = b'The quick red fox jumped over the lazy brown dog'
-        cipher_text = cbc_encrypt(key, text, iv)
-        print(cipher_text)
-        self.assertEqual(text, cbc_decrypt(key, cipher_text, iv))
+        aes = AES.new(key, AES.MODE_CBC, iv=iv)
+        expected = aes.encrypt(text)
+        actual = cbc_encrypt(key, text, iv)
+        self.assertEqual(expected, actual)
 
 
-def cbc_encrypt(key, text, iv):
+def cbc_encrypt(key, plain, iv):
     aes = AES.new(key, AES.MODE_ECB)
     cipher_text = []
     data = iv
-    for block in grouper(text, 16):
+    for block in grouper(plain, 16):
         data = xor(data, bytes(block))
-        cipher_text.append(aes.encrypt(data))
+        data = aes.encrypt(data)
+        cipher_text.append(data)
     return b''.join(cipher_text)
 
 
