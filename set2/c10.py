@@ -23,6 +23,21 @@ class TestCbc(unittest.TestCase):
         actual = cbc_encrypt(self.key, self.text[:25], self.iv)
         self.assertEqual(expected, actual)
 
+    def testDecrypt(self):
+        cipher = self.aes.encrypt(self.text)
+        expected = self.aes.decrypt(cipher)
+        my_cipher = cbc_encrypt(self.key, self.text, self.iv)
+        actual = cbc_decrypt(self.key, my_cipher, self.iv)
+        self.assertEqual(expected, actual)
+
+    def testDecryptPadding(self):
+        text = pad(self.text[:25], 16)
+        cipher = self.aes.encrypt(text)
+        expected = self.aes.decrypt(cipher)
+        my_cipher = cbc_encrypt(self.key, text, self.iv)
+        actual = cbc_decrypt(self.key, my_cipher, self.iv)
+        self.assertEqual(expected, actual)
+
 
 def cbc_encrypt(key, plain, iv):
     block_size = 16
