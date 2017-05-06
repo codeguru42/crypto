@@ -10,14 +10,12 @@ from cryptopals import is_ecb
 
 class TestOracle(TestCase):
     def testDetectECB(self):
-        print('Testing ECB')
         with patch.object(secrets.SystemRandom, 'randrange', side_effect=[AES.MODE_ECB, 5, 5]) as mock_rng:
             text = b'The quick red fox jumped over the lazy brown dog.'
             cipher = encrypt_with_random_key(text)
             self.assertTrue(is_ecb(cipher))
 
     def testDetectCBC(self):
-        print('Testing CBC')
         with patch.object(secrets.SystemRandom, 'randrange', side_effect=[AES.MODE_CBC, 5, 5]) as mock_rng:
             text = b'The quick red fox jumped over the lazy brown dog.'
             cipher = encrypt_with_random_key(text)
@@ -38,10 +36,8 @@ def encrypt_with_random_key(plain):
     iv = random_bytes(block_size)
 
     if mode == AES.MODE_ECB:
-        print('ECB mode')
         aes = AES.new(key, mode)
     else:
-        print('CBC mode')
         aes = AES.new(key, mode, iv=iv)
 
     prefix = random_bytes(rng.randrange(5, 11))
