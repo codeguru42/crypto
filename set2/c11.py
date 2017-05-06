@@ -1,9 +1,17 @@
 import secrets
-
+from unittest import TestCase
 from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad
 
 from cryptopals import is_ecb
+
+
+class TestOracle(TestCase):
+    def testDetectECB(self):
+        pass
+
+    def testDetectCBC(self):
+        pass
 
 
 def random_bytes(byte_count):
