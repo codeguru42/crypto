@@ -3,6 +3,8 @@ import secrets
 from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad
 
+from cryptopals import is_ecb
+
 
 def random_bytes(byte_count):
     rng = secrets.SystemRandom()
@@ -18,8 +20,10 @@ def encrypt_with_random_key(plain):
     iv = random_bytes(block_size)
 
     if mode == AES.MODE_ECB:
+        print('ECB')
         aes = AES.new(key, mode)
     else:
+        print('CBC')
         aes = AES.new(key, mode, iv=iv)
 
     prefix = random_bytes(rng.randrange(5, 11))
@@ -31,7 +35,11 @@ def encrypt_with_random_key(plain):
 def main():
     for i in range(10):
         text = b'The quick red fox jumped over the lazy brown dog.'
-        print(encrypt_with_random_key(text))
+        cipher = encrypt_with_random_key(text)
+        if is_ecb(cipher):
+            print('ECB')
+        else:
+            print('CBC')
 
 
 if __name__ == '__main__':
