@@ -3,7 +3,7 @@ import secrets
 
 def random_key(keylen):
     rng = secrets.SystemRandom()
-    return bytes(rng.sample(range(256), keylen))
+    return bytes(rng.choices(range(256), k=keylen))
 
 
 def main():
