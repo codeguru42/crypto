@@ -10,13 +10,13 @@ from cryptopals import is_ecb
 class TestOracle(TestCase):
     def testDetectECB(self):
         with patch.object(SystemRandom, 'randrange', side_effect=[AES.MODE_ECB, 5, 5]) as _:
-            text = b'The quick red fox jumped over the lazy brown dog.'
+            text = b'A' * 50
             cipher = encrypt_with_random_key(text)
             self.assertTrue(is_ecb(cipher))
 
     def testDetectCBC(self):
         with patch.object(SystemRandom, 'randrange', side_effect=[AES.MODE_CBC, 5, 5]) as _:
-            text = b'The quick red fox jumped over the lazy brown dog.'
+            text = b'A' * 50
             cipher = encrypt_with_random_key(text)
             self.assertFalse(is_ecb(cipher))
 
