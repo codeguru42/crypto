@@ -10,11 +10,11 @@ from cryptopals import is_ecb
 class TestOracle(TestCase):
     def testDetectECB(self):
         with patch.object(SystemRandom, 'randrange', side_effect=[AES.MODE_ECB, 5, 5]) as _:
-            self.assertTrue(ecb_oracle(encrypt_with_random_key))
+            self.assertTrue(detect_ecb(encryption_oracle))
 
     def testDetectCBC(self):
         with patch.object(SystemRandom, 'randrange', side_effect=[AES.MODE_CBC, 5, 5]) as _:
-            self.assertFalse(ecb_oracle(encrypt_with_random_key))
+            self.assertFalse(detect_ecb(encryption_oracle))
 
 
 def random_bytes(byte_count):
@@ -22,7 +22,7 @@ def random_bytes(byte_count):
     return bytes(rng.choices(range(256), k=byte_count))
 
 
-def encrypt_with_random_key(plain):
+def encryption_oracle(plain):
     key_length = 16
     block_size = 16
     rng = SystemRandom()
@@ -41,7 +41,7 @@ def encrypt_with_random_key(plain):
     return aes.encrypt(plain)
 
 
-def ecb_oracle(encryption_function):
+def detect_ecb(encryption_function):
     text = b'A' * 50
     cipher = encryption_function(text)
     return is_ecb(cipher)
@@ -50,7 +50,7 @@ def ecb_oracle(encryption_function):
 def main():
     for i in range(10):
         text = b'The quick red fox jumped over the lazy brown dog.'
-        cipher = encrypt_with_random_key(text)
+        cipher = encryption_oracle(text)
         if is_ecb(cipher):
             print('ECB')
         else:
