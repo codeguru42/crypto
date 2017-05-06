@@ -17,7 +17,11 @@ class TestOracle(TestCase):
             self.assertTrue(is_ecb(cipher))
 
     def testDetectCBC(self):
-        pass
+        print('Testing CBC')
+        with patch.object(secrets.SystemRandom, 'randrange', side_effect=[AES.MODE_CBC, 5, 5]) as mock_rng:
+            text = b'The quick red fox jumped over the lazy brown dog.'
+            cipher = encrypt_with_random_key(text)
+            self.assertFalse(is_ecb(cipher))
 
 
 def random_bytes(byte_count):
